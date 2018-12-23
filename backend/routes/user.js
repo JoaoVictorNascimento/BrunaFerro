@@ -1,14 +1,10 @@
 const express = require('express');
 const User = require('../models/user')
 const router = express.Router();
-const bcript = require('bcrypt')
-const objectId = require('mongoose');
 const Joi = require('joi')
-const passport = require('passport')
 const validator = require('express-joi-validation')({})
 
 Joi.objectId = require('joi-objectid')(Joi);
-const saltRounds = 10;
 const bodyValidator = Joi.object({
     email: Joi.string().email().required(),
     name: Joi.string().max(20),
@@ -60,5 +56,17 @@ router.delete('/user/:id', validator.params(paramsValidator), function (req, res
         res.status(203).send(user)
     })
 })
+
+router.get('/users', (req, res) => {
+    User.getUsers(function (err, users){
+      if(err){
+        console.log(err)
+        return res.status(400).send('server could not understand the request')
+      }
+      else{
+        res.status(200).send(users);
+      }
+    })
+  })
 
 module.exports = router

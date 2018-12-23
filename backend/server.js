@@ -1,11 +1,12 @@
 const express = require("express")
 const bodyParser = require("body-parser")
 const cors = require("cors")
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 const passport = require("passport")
 
 const server = express()
 const port = 8080
+
 server.use(bodyParser.json())
 server.use(cors())
 
