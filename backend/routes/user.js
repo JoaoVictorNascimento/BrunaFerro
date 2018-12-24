@@ -10,6 +10,10 @@ const bodyValidator = Joi.object({
     name: Joi.string().max(20),
     phone: Joi.string().min(11).max(11),
     obs: Joi.string().max(1000),
+    productList: Joi.array().items(Joi.object({
+        productId: Joi.string().required(),
+        quantity: Joi.number()
+    }))
 })
 
 const paramsValidator = Joi.object({
@@ -20,7 +24,7 @@ router.get('/', function (req, res) {
     res.send('teste, Estou aqui')
 })
 
-router.get('/user/:id', validator.params(paramsValidator), function (req, res) {
+router.get('/User/:id', validator.params(paramsValidator), function (req, res) {
     User.getUserbyid(req.params.id, req.user._id, function (err, user) {
         if (err) {
             console.log(err)
@@ -36,6 +40,7 @@ router.post('/registerUser', validator.body(bodyValidator), (req, res) => {
     newUser.name = req.body.name
     newUser.phone = req.body.phone
     newUser.obs = req.body.obs
+    newUser.productList = req.body.productList
 
     User.addUser(newUser, (err, user) => {
         if (err) {

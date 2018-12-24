@@ -5,6 +5,13 @@ const UserSchema = mongoose.Schema({
     name: String,
     phone: String,
     obs: String,
+    productList: [
+        {
+            productId:{ type: String, required: true},
+            quantity: Number,
+        }
+    ],
+
 })
 
 module.exports = mongoose.model('User', UserSchema)
