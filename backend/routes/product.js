@@ -21,10 +21,10 @@ const paramsValidator = Joi.object({
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-      cb(null, './uploads/');
+      cb(null, './images/');
     },
     filename: function(req, file, cb) {
-      cb(null, new Date().toISOString() + file.originalname);
+      cb(null, file.originalname);
     }
   });
   
@@ -37,15 +37,12 @@ const storage = multer.diskStorage({
     }
   };
   
-  const upload = multer({
+  const images = multer({
     storage: storage,
-    limits: {
-      fileSize: 1024 * 1024 * 5
-    },
     fileFilter: fileFilter
   });
 
-router.post('/registerProduct',upload.single('productImage'), validator.body(bodyValidator), (req, res) => {
+router.post('/registerProduct',images.single('productImage'), validator.body(bodyValidator), (req, res) => {
     console.log(req.file)
     let newProduct = {}
     newProduct._id = new mongoose.Types.ObjectId()
@@ -106,7 +103,7 @@ router.delete('/deleteProduct/:id', validator.params(paramsValidator), function(
     })
 })
 
-router.put('/product/:id', upload.single('productImage'), validator.params(paramsValidator), function(req, res){
+router.put('/product/:id', images.single('productImage'), validator.params(paramsValidator), function(req, res){
     let updateProduct = {}
     updateProduct._id = req.params.id
     updateProduct.category = req.body.category

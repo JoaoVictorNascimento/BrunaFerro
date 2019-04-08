@@ -1,0 +1,73 @@
+<html>
+	<header>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link href="css/index.css" rel="stylesheet">
+		<title>Bruna Ferro</title>
+    </header>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript" src="../api/product.js"></script>
+	<body>
+		<div class="container">
+			<div class="header">
+				<a href="index.html"><img src="imagens/logo.png" width="20%"></a>
+			</div>
+            <hr>
+            <div class="corpo form-fundo">
+                <h4>Cadastro de Produtos</h4>
+                <hr style="width: 80%;">
+                <form class="form-horizontal" action="" method="POST">
+                    <div class="form-group">
+                        <label class="col-sm-2 col-form-label">Categoria</label>
+                        <div class="col-sm-8">
+                            <select name="categoria" class="form-control">
+                                <option value="bolo">Bolo</option>
+                                <option value="brigadeiro">Brigadeiro</option>
+                                <option value="beijinho">Beijinho</option>
+                                <option value="ovo">Ovo de Páscoa</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-form-label">Medida</label>
+                        <div class="col-sm-8">
+                            <select name="medida" class="form-control">
+                                <option value="kg">Kg</option>
+                                <option value="un">Unidade</option>
+                                <option value="cento">Cento</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-form-label">Preço</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="preco" value="" placeholder="10.00"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-form-label">Descrição</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="descricao" value="" placeholder="descrição do produto"/>
+                        </div>
+                    </div>
+                    <div class="form-group custom-file">
+                        <label class="custom-file-label col-sm-2" for="customFile">Imagem</label>
+                        <input type="file" class="btn-padrao custom-file-input col-sm-8" id="customFile" name="imagem" value="">
+                    </div>
+                    <input type="hidden" name="action" value="cadastrar"/>
+                    <button type="submit" class="btn btn-primary" onclick="addProduct(cadastrar)">Cadastrar</button>
+                </form>
+            </div>
+            <div class="footer">
+				<div class="row">
+					<nav id="menu">
+						<ul>
+							<li><a href="pedido.html">MEU PEDIDO |</a></li>
+							<li><a href="orcamento.html">ORÇAMENTO |</a></li>
+							<li><a href="produtos.html">MAIS PRODUTOS</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
